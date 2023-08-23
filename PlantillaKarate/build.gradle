@@ -1,0 +1,43 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+
+
+def jUnitVersion = '5.9.2'
+def karateVersion = '1.4.0'
+def cucumberReportingVersion = '4.11.2'
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jUnitVersion}"
+    testImplementation "com.intuit.karate:karate-junit5:${karateVersion}"
+    testImplementation "net.masterthought:cucumber-reporting:${cucumberReportingVersion}"
+    testImplementation "com.intuit.karate:karate-apache:0.9.6"
+    implementation "org.apache.httpcomponents.client5:httpclient5:5.2.1"
+    testImplementation 'org.slf4j:slf4j-simple:2.0.5'
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.1'
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+gradle.startParameter.refreshDependencies = true
+
+test {
+    useJUnitPlatform()
+}
